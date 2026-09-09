@@ -12,7 +12,7 @@ public class Main {
         OrderService order = context.getBean(OrderService.class);
         order.placeOrder();
 
-        PaymentService payment = context.getBean(PaymentService.class);
-        payment.pay();
+        //PaymentService payment = context.getBean(PaymentService.class);
+        //payment.pay();
     }
 }

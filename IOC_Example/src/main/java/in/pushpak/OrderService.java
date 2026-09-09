@@ -1,18 +1,43 @@
 package in.pushpak;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OrderService {
 
-    //private PaymentService paymentService;
+    @Autowired // Dependency Injection - Field (TYPE 3 of DI)
+    private PaymentService paymentService;
 
-    /**public OrderService(PaymentService paymentService){
+    /**@Autowired  // Dependency Inkection - Setter (Type 2 of DI)
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+        @Autowired // Dependency Injection - Constructor (Type 1 of DI)
+    public OrderService(PaymentService paymentService){
         this.paymentService = paymentService;
     }*/
+
+
+
     public void placeOrder(){
 
-        //paymentService.pay();
+        paymentService.pay();
+
         System.out.println("order placed");
     }
 }
+
+/** why dependency Injection is recommended instead of Setter Injection & field Injection
+ *
+ * 1) dependency get wired at the time of object creation itself
+ * 2) final can be used( meaning just one time object/ value intialization using constructor
+ * 3) unit testing is easy to perform.
+ *
+ * ****** INTERNALS OF SPRING MANAGING BEANS - ApplicationContext & AnnotationConfigApplicationContext(AppConfig.class)******
+ *
+ */
+
+
+
