@@ -1,23 +1,25 @@
 package in.pushpak;
 
+import in.pushpak.payment.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class OrderService {
 
-    @Autowired // Dependency Injection - Field (TYPE 3 of DI)
+    //@Autowired // Dependency Injection - Field (TYPE 3 of DI)
     private PaymentService paymentService;
 
-    /**@Autowired  // Dependency Inkection - Setter (Type 2 of DI)
+    /**@Autowired  // Dependency Injection - Setter (Type 2 of DI)
     public void setPaymentService(PaymentService paymentService) {
         this.paymentService = paymentService;
-    }
-
-        @Autowired // Dependency Injection - Constructor (Type 1 of DI)
-    public OrderService(PaymentService paymentService){
-        this.paymentService = paymentService;
     }*/
+
+    @Autowired // Dependency Injection - Constructor (Type 1 of DI)
+    public OrderService(@Qualifier("cp") PaymentService paymentService){ // card payment & upi payment both are types of Payment service
+        this.paymentService = paymentService;
+    }
 
 
 
