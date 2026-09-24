@@ -13,3 +13,6 @@ the OrderService ... by which it cause the problem...<br>
 
 so look for the things like why we are using the OrderService in Payment service...whats the need of displaying<br>
 Orderlist using the paymentService ... so try to avoid this.<br>
+
+<h2>We can remove circular dependency using @lazy initialization with proxy ... and can remove an ambiguity ...which object to first create</h2>
+@lazy & proxy.

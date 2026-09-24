@@ -1,5 +1,7 @@
 package in.pushpak;
 
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -7,7 +9,7 @@ public class OrderService {
 
     PaymentService paymentService;
 
-    OrderService(PaymentService paymentService){
+    OrderService(@Lazy PaymentService paymentService){
         this.paymentService = paymentService;
     }
 
