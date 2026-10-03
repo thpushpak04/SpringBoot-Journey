@@ -12,11 +12,10 @@ public class SpringBootPart2Application {
 		ApplicationContext context =
 				SpringApplication.run(SpringBootPart2Application.class, args);
 
-		PaymentGateway paymentGateway = context.getBean(PaymentGateway.class);
-		//paymentGateway.setType("Paytm");
-		//paymentGateway.setRetryCount(5);
+		/**PaymentGateway paymentGateway = context.getBean(PaymentGateway.class);
 
-		System.out.println(paymentGateway.getRetryCount()+" "+paymentGateway.getType());
+		paymentGateway.print();*/
+
 	}
 
 }
