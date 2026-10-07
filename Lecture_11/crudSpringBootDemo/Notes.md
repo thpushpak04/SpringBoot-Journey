@@ -22,6 +22,8 @@ So, firstly for using/creating CRUD using Spring-boot is directly depended upon 
 
 Note :- Dependency injection is very imp for managing and flow of controller - service - and repository.
 
+![alt text](image.png)
+
 
         
                             
