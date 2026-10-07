@@ -19,7 +19,7 @@ public class StudentService {
         // store to db
 
         System.out.println("Inside student service");
-        Student studentResp = studentRepository.saveStudent(studentReq);
+        Student studentResp = studentRepository.save(studentReq);
         System.out.println("Exiting student service");
         return studentResp;
     }
