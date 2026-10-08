@@ -1,7 +1,7 @@
 package in.pushpak.crudSpringBootDemo.entity;
 
 import jakarta.persistence.Entity;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 @Entity
 public class Student {

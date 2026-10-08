@@ -5,6 +5,9 @@ import in.pushpak.crudSpringBootDemo.repository.StudentRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class StudentService {
 
@@ -22,6 +25,23 @@ public class StudentService {
         Student studentResp = studentRepository.save(studentReq);
         System.out.println("Exiting student service");
         return studentResp;
+    }
+
+    public Student getStudent(Long id){
+        Optional<Student> StudentResp = studentRepository.findById(id);
+
+        if(StudentResp.isPresent()){
+            return StudentResp.get();
+        }
+
+        return null;
+    }
+
+    public List<Student> getAllStudent(){
+        List<Student> studentList = studentRepository.findAll();
+
+        return studentList;
+
     }
 
 

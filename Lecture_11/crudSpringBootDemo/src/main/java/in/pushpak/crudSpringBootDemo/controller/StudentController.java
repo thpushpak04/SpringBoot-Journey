@@ -2,8 +2,12 @@ package in.pushpak.crudSpringBootDemo.controller;
 
 import in.pushpak.crudSpringBootDemo.entity.Student;
 import in.pushpak.crudSpringBootDemo.service.StudentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 // not @component
 @RestController
@@ -26,7 +30,35 @@ public class StudentController {
         return ResponseEntity.status(201).body(createdStudent); // response entity is used for status code mainly here
     }
 
-    // read student
+    // read one student
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Student> getStudent(@PathVariable Long id){
+        Student studentResp = studentService.getStudent(id);
+
+        if(studentResp == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(studentResp);
+
+    }
+
+    // read all student
+    @GetMapping("/getAll")
+    public ResponseEntity<List<Student>> getAllStudent(){
+        List<Student> studentList = studentService.getAllStudent();
+
+        if(studentList.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(studentList);
+
+
+    }
+
 
     // update student
 
