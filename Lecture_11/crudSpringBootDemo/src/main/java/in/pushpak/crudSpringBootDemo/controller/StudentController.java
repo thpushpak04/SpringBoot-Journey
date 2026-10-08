@@ -61,6 +61,36 @@ public class StudentController {
 
 
     // update student
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Student> putStudent(@PathVariable Long id,
+                                              @RequestBody Student studentReq){
+
+        Student studentResp = studentService.updateStudent(id, studentReq);
+
+        if(studentResp == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(studentResp);
+
+    }
 
     // delete student
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Student> deleteStudent(@PathVariable Long id){
+
+        Student studentResp = studentService.deleteStudent(id);
+
+        if(studentResp == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(studentResp);
+
+    }
+
 }
