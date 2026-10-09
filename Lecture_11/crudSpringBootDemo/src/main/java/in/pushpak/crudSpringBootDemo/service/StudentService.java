@@ -13,6 +13,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
+    //dependency injection
     private StudentRepository studentRepository;
 
     public StudentService(StudentRepository studentRepository){
@@ -22,11 +23,10 @@ public class StudentService {
     // Create - method
     public Student createStudent(Student studentReq){
         // business logic
-        // store to db
 
-        System.out.println("Inside student service");
+        //System.out.println("Inside student service");
         Student studentResp = studentRepository.save(studentReq);
-        System.out.println("Exiting student service");
+        //System.out.println("Exiting student service");
         return studentResp;
     }
 

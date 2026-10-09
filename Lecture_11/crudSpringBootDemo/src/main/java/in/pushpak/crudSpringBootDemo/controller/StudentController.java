@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/students")
 public class StudentController {
 
+    // dependency injection
     private StudentService studentService;
 
     public StudentController(StudentService studentService){
@@ -24,9 +25,9 @@ public class StudentController {
     //create student
     @PostMapping("/create")
     public ResponseEntity<Student> createStudent(@RequestBody Student student){ // @    RequestBody annotation makes the json to the class/object data
-        System.out.println("Inside Student Controller");
-        Student createdStudent = studentService.createStudent(student);
-        System.out.println("Exiting student Controller");
+        //System.out.println("Inside Student Controller");
+        Student createdStudent = studentService.createStudent(student); // calling a method from studentservice
+        //System.out.println("Exiting student Controller");
         return ResponseEntity.status(201).body(createdStudent); // response entity is used for status code mainly here
     }
 

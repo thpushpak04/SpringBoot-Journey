@@ -9,4 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Long> {
 
+    /**
+     * Student will be injected then its data will be stored and then it will
+     * be thrown back to the actual need.
+     */
+
 }
