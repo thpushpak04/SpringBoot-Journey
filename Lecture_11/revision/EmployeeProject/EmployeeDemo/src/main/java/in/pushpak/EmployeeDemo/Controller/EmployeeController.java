@@ -68,4 +68,36 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeRes);
 
     }
+
+    //update
+    @PutMapping("/update")
+    public ResponseEntity<Employee> updateEmployee(@RequestParam Long id,
+                                                   @RequestBody Employee employee){
+        Employee empRes = employeeService.updateDetails(id,employee);
+
+        if(empRes == null){
+            ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(empRes);
+    }
+
+    // delete
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Employee> deleteEmployee(@RequestParam Long id){
+        Employee empRes = employeeService.deleteDetails(id);
+
+        if(empRes == null){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+
+        return ResponseEntity.ok(empRes);
+    }
 }

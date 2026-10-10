@@ -5,6 +5,7 @@ import in.pushpak.EmployeeDemo.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +43,28 @@ public class EmployeeService {
         List<Employee> empRes = employeeRepository.findAll(); //send data in list datatype
 
         return empRes;
+    }
+
+    //update - method
+    public Employee updateDetails(Long id, Employee employeeReq){
+        if(employeeRepository.existsById(id)){
+            Employee empRes = employeeRepository.save(employeeReq);
+            return empRes;
+        }
+        return null;
+    }
+
+    // delete - method
+    public Employee deleteDetails(Long id){
+        Optional<Employee> empRes = employeeRepository.findById(id);
+        employeeRepository.deleteById(id);
+        System.out.println("the deleted details are: ");
+
+        if(empRes.isPresent()){
+            return empRes.get();
+        }
+
+        return null;
     }
 
 }
