@@ -35,11 +35,11 @@ public class StudentService {
 
 
     // read - method(by id)
-    public Student getStudent(Long id){
+    public CreateStudentResponseDto getStudent(Long id){
         Optional<Student> StudentResp = studentRepository.findByIdAndDeletedIsFalse(id);
 
         if(StudentResp.isPresent()){
-            return StudentResp.get();
+            return mapToDto(StudentResp.get());
         }
 
         return null;
@@ -48,10 +48,13 @@ public class StudentService {
 
 
     // readAll - method
-    public List<Student> getAllStudent(){
+    public List<CreateStudentResponseDto> getAllStudent(){
         List<Student> studentList = studentRepository.findByDeletedIsFalse();
 
-        return studentList;
+        //java stream syntax - can use for loop too
+        return studentList.stream()
+                .map(this::mapToDto)
+                .toList();
 
     } // select * from employee where deleted = false.
 

@@ -6,11 +6,13 @@ import in.pushpak.crudSpringBootDemo.dto.UpdateStudentRequestDto;
 import in.pushpak.crudSpringBootDemo.dto.UpdateStudentResponseDto;
 import in.pushpak.crudSpringBootDemo.entity.Student;
 import in.pushpak.crudSpringBootDemo.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 // not @component
 @RestController
@@ -28,17 +30,21 @@ public class StudentController {
     //create student
     @PostMapping("/create")
     public ResponseEntity<CreateStudentResponseDto> createStudent(
-            @RequestBody CreateStudentRequestDto createStudentRequestDto){ // @    RequestBody annotation makes the json to the class/object data
-        //System.out.println("Inside Student Controller");
-        CreateStudentResponseDto createdStudent = studentService.createStudent(createStudentRequestDto); // calling a method from studentservice
-        //System.out.println("Exiting student Controller");
-        return ResponseEntity.status(201).body(createdStudent); // response entity is used for status code mainly here
+            @Valid @RequestBody CreateStudentRequestDto createStudentRequestDto){ // @    RequestBody annotation makes the json to the class/object data
+
+        //@valid usage for validation
+        CreateStudentResponseDto createdStudent =
+                studentService.createStudent(createStudentRequestDto); // calling a method from studentservice
+
+        return ResponseEntity
+                .status(201)
+                .body(createdStudent); // response entity is used for status code mainly here
     }
 
     // read one student
     @GetMapping("/get")
-    public ResponseEntity<Student> getStudent(@RequestParam Long id){
-        Student studentResp = studentService.getStudent(id);
+    public ResponseEntity<CreateStudentResponseDto> getStudent(@RequestParam Long id){
+        CreateStudentResponseDto studentResp = studentService.getStudent(id);
 
         if(studentResp == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -52,8 +58,8 @@ public class StudentController {
 
     // read all student
     @GetMapping("/getAll")
-    public ResponseEntity<List<Student>> getAllStudent(){
-        List<Student> studentList = studentService.getAllStudent();
+    public ResponseEntity<List<CreateStudentResponseDto>> getAllStudent(){
+        List<CreateStudentResponseDto> studentList = studentService.getAllStudent();
 
         if(studentList.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -116,3 +122,15 @@ public class StudentController {
 
 
 }
+
+/**
+ * For validations --> spring-boot-starter-validation
+ *
+ * plot twist as there will be as an output there will be 404 bad request
+ * the response will be created by spring boot by itself...
+ *
+ * so for our desired output to show user that we require this and that
+ * we have to override it... and for that we need exception handling...
+ *
+ * guess what it's our next lecture... bhot mazaa aaya
+ */

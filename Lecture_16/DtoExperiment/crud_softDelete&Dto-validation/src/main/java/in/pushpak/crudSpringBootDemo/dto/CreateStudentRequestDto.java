@@ -1,11 +1,24 @@
 package in.pushpak.crudSpringBootDemo.dto;
 
+import jakarta.validation.constraints.*;
+
 public class CreateStudentRequestDto {
 
+    @NotBlank(message = "name can't be null/empty or blank")
+    @Size(min = 2, max = 50, message = "Student name must be in range")
     private String name;
-    private int age;
+
+    @Min(value = 18)
+    @NotNull(message = "Age is required")
+    private Integer age;
+
+    @Email(message = "student email must be valid")
     private String email;
-    private int rollNo;
+
+    @NotNull(message = "roll no. is compulsory")
+    private Integer rollNo;
+
+    @NotBlank(message = "Subject is compulsory")
     private String subject;
 
     public String getName() {
