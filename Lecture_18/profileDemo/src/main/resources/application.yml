@@ -1,0 +1,14 @@
+
+
+spring:
+  application:
+    name: profileDemo
+
+server:
+  port: 9090
+
+app:
+  welcome:
+    message: Hello, Welcome to my application
+    code: 200
+    list: pushpa,rishabh,rohan,karma
